@@ -1,0 +1,13 @@
+asyncpg
+bcrypt
+databases
+fastapi
+ormar
+psycopg2
+pydantic
+pydantic[email]
+pyJWT
+python-decouple==3.3
+python-multipart
+sqlalchemy
+uvicorn
