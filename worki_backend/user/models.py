@@ -1,12 +1,10 @@
-from db import MainMeta
-
+from db import ormar_base_config
 
 import ormar
 
 
 class User(ormar.Model):
-    class Meta(MainMeta):
-        pass
+    ormar_config = ormar_base_config.copy()
 
     id: int = ormar.Integer(primary_key=True)
     name: str = ormar.String(max_length=150)

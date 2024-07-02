@@ -13,8 +13,7 @@ def hash_password(password: str) -> str:
 
 
 def verify_password(password: str, hash: str) -> bool:
-    hash = '$2b$12$' + hash
-    return checkpw(password.encode(), hash.encode())
+    return checkpw(password.encode(),  f'$2b$12${hash}'.encode())
 
 
 def create_access_token(data: dict) -> str:

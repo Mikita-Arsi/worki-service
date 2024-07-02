@@ -1,4 +1,4 @@
-DB = "postgresql://postgres:password@localhost:5432/database"
+DB = "postgresql://postgres:1111@localhost:5432/worki_db"
 
 
 JWT_SECRET = "secret"

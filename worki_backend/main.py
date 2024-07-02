@@ -1,14 +1,15 @@
 from fastapi import FastAPI
 from user.api import user_router
 from link.api import link_router
-from db import db, metadata, engine
+from db import ormar_base_config
 
 
 app = FastAPI()
 
 
-metadata.create_all(engine)
-app.state.database = db
+ormar_base_config.metadata.create_all(ormar_base_config.engine)
+app.state.database = ormar_base_config.database
+
 
 
 @app.on_event("startup")

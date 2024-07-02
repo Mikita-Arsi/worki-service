@@ -19,7 +19,7 @@ async def update_username(new_name: str, user: m.User = Depends(get_current_user
 
 @user_router.patch("/email", response_model=s.User)
 async def update_email(new_email: EmailStr, user: m.User = Depends(get_current_user)):
-    if await m.User.objects.get_or_none(email=new_email) == None:
+    if await m.User.objects.get_or_none(email=new_email) is None:
         user.email = new_email
     else:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="The email is occupied by another user")
@@ -28,7 +28,7 @@ async def update_email(new_email: EmailStr, user: m.User = Depends(get_current_u
 
 @user_router.patch("/prefix", response_model=s.User)
 async def update_prefix(new_prefix: str, user: m.User = Depends(get_current_user)):
-    if await m.User.objects.get_or_none(prefix=new_prefix) == None:
+    if await m.User.objects.get_or_none(prefix=new_prefix) is None:
         user.prefix = new_prefix
     else:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="The username is occupied by another user")
@@ -72,8 +72,10 @@ async def create_user(user: s.UserCreate):
     user.password = str(hash_password(user.password))
     try:
         user = await m.User.objects.create(**user.dict(exclude={"password2"}))
-    except UniqueViolationError:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User already exists")
+    except UniqueViolationError as e:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail="User already exists"
+        )
     return s.UserWithToken(
         **user.dict(),
         token=s.Token(
