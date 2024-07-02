@@ -15,7 +15,7 @@ services:
   nginx:
     image: nginx:1.23-alpine
     ports:
-      - 80:80
+      - 8000:8000
       - 443:443
     restart: always
     environment:
