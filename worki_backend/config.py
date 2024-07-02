@@ -1,6 +1,6 @@
-DB = "postgresql://postgres:1111@localhost:5432/worki_db"
+import os
 
-
-JWT_SECRET = "secret"
-JWT_ALGORITHM = "HS256"
-JWT_EXPIRE_MINUTES = 60
+DB = os.environ.get("DB")
+JWT_SECRET = os.environ.get("JWT_SECRET")
+JWT_ALGORITHM = os.environ.get("JWT_ALGORITHM")
+JWT_EXPIRE_MINUTES = os.environ.get("JWT_EXPIRE_MINUTES")

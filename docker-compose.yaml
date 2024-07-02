@@ -7,6 +7,9 @@ services:
     environment:
       - NGINX_HOST
       - DB
+      - JWT_SECRET
+      - JWT_ALGORITHM
+      - JWT_EXPIRE_MINUTES
     ports:
       - 3001:3001
   nginx:

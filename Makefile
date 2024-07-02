@@ -1,5 +1,5 @@
 update:
-	git pull git@github.com:Mikita-Arsi/ai-tgbot.git main
+	git pull https://github.com/Mikita-Arsi/worki-service.git master
 
 kill:
 	docker compose kill
